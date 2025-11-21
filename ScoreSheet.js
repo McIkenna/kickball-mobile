@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const { width, height } = Dimensions.get('window');
 
 export const ScoreSheet = ({
@@ -25,9 +25,10 @@ export const ScoreSheet = ({
     //     const secs = seconds % 60;
     //     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     // };
+    const insets = useSafeAreaInsets();
 
     return (
-        <View style={styles.container} pointerEvents="box-none">
+        <View style={[styles.container, { top: insets, left: insets, bottom: insets, right: insets } ]} pointerEvents="box-none">
             {/* Notification */}
             {notification && (
                 <View style={styles.notificationContainer}>
@@ -137,10 +138,6 @@ export const ScoreSheet = ({
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
         width: '100%',
         height: '100%',
     },
@@ -247,7 +244,7 @@ const styles = StyleSheet.create({
     difficultySection: {
         position: 'absolute',
         top: 70,
-        left: 120,
+        left: 110,
         transform: [{ translateX: -width * 0.25 }],
         zIndex: 10,
     },
@@ -275,7 +272,7 @@ const styles = StyleSheet.create({
     },
     difficultyButtons: {
         flexDirection: 'row',
-        gap: 8,
+        gap: 4,
     },
     difficultyButton: {
         width: 32,
@@ -309,7 +306,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderWidth: 1,
         borderColor: 'rgba(255, 255, 255, 0.1)',
-        maxWidth: 150,
+        maxWidth: 110,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
