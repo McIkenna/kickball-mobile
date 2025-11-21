@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "vibeCraft",
-    "slug": "vibeCraft",
+    "name": "kickball",
+    "slug": "kickball",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
