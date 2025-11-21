@@ -143,107 +143,108 @@ export default function App() {
 
   return (
     <>
-    <SafeAreaProvider>
-      <ScoreSheet
-        score={score}
-        setScore={setScore}
-        difficulty={difficulty}
-        setDifficulty={setDifficulty}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        time={time}
-        setTime={setTime}
-        restartGame={restartGame}
-        points={points}
-        setPoints={setPoints}
-        notification={notification}
-        shotsRemaining={shotsRemaining}
-        highScore={highScore}
+      <SafeAreaProvider>
+        <ScoreSheet
+          score={score}
+          setScore={setScore}
+          difficulty={difficulty}
+          setDifficulty={setDifficulty}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          time={time}
+          setTime={setTime}
+          restartGame={restartGame}
+          points={points}
+          setPoints={setPoints}
+          notification={notification}
+          shotsRemaining={shotsRemaining}
+          highScore={highScore}
 
-      />
-      <Joystick
-        onShoot={handleJoystickShoot} />
-      <Canvas
-        camera={{ position: [3, 2, 0], fov: 100 }}
-      >
-        {/* <CameraControl
+        />
+        <Joystick
+          onShoot={handleJoystickShoot}
+        />
+        <Canvas
+          camera={{ position: [3, 2, 0], fov: 100 }}
+        >
+          {/* <CameraControl
       ballRef={ballRef}
       isShotTaken={isShotTaken}
       resetCameraFlag={resetCamera}
       orbitControlsRef={orbitControlsRef} /> */}
 
-        <OrbitControls
-          ref={orbitControlsRef}
-          enabled={!isShotTaken}
-          enableZoom={true}
-          enablePan={true}
-          enableRotate={true}
-          zoomSpeed={0.6}
-          panSpeed={1.0}
-          rotateSpeed={0.4}
-          minDistance={1}
-          maxDistance={20}
-          maxPolarAngle={Math.PI / 2}
-        />
-        <ambientLight intensity={2} color={'white'} />
-        <directionalLight intensity={1.5} position={[5, 10, 5]} />
-        <directionalLight intensity={0.8} position={[-6, 2, 2]} />
-        <directionalLight intensity={0.8} position={[6, 2, 2]} />
-        <Suspense fallback={null}>
-          <GoalPost
-            postRef={postRef}
-            lineRef={lineRef}
-            topcrossbarRef={topcrossbarRef}
-            leftcrossbarRef={leftcrossbarRef}
-            rightcrossbarRef={rightcrossbarRef}
-            wallRef={wallRef}
-            brickBackRef={brickBackRef}
-            brickLeftRef={brickLeftRef}
-            brickRightRef={brickRightRef} />
-          <Ball
-            ballRef={ballRef}
-            keeperRef={keeperRef}
-            postRef={postRef}
-            lineRef={lineRef}
-            wallRef={wallRef}
-            brickBackRef={brickBackRef}
-            brickLeftRef={brickLeftRef}
-            brickRightRef={brickRightRef}
-            onGoal={handleGoal}
-            points={points}
-            setPoints={setPoints}
-            isGoal={isGoal}
-            setIsGoal={setIsGoal}
-            difficulty={difficulty}
-            topcrossbarRef={topcrossbarRef}
-            leftcrossbarRef={leftcrossbarRef}
-            rightcrossbarRef={rightcrossbarRef}
-            showNotification={showNotification}
-            shotsRemaining={shotsRemaining}
-            setShotRemaining={setShotsRemaining}
-            handleShot={handleShot}
-            restartGame={restartGame}
-            setResetCamera={setResetCamera}
-            joystickInput={joystickInput}
-            setJoystickInput={setJoystickInput}
+          <OrbitControls
+            ref={orbitControlsRef}
+            enabled={!isShotTaken}
+            enableZoom={true}
+            enablePan={true}
+            enableRotate={true}
+            zoomSpeed={0.6}
+            panSpeed={1.0}
+            rotateSpeed={0.4}
+            minDistance={1}
+            maxDistance={20}
+            maxPolarAngle={Math.PI / 2}
           />
-          <Keeper
-            keeperRef={keeperRef}
-            difficulty={difficulty}
-            keeperDirection={keeperDirection}
-          />
+          <ambientLight intensity={2} color={'white'} />
+          <directionalLight intensity={1.5} position={[5, 10, 5]} />
+          <directionalLight intensity={0.8} position={[-6, 2, 2]} />
+          <directionalLight intensity={0.8} position={[6, 2, 2]} />
+          <Suspense fallback={null}>
+            <GoalPost
+              postRef={postRef}
+              lineRef={lineRef}
+              topcrossbarRef={topcrossbarRef}
+              leftcrossbarRef={leftcrossbarRef}
+              rightcrossbarRef={rightcrossbarRef}
+              wallRef={wallRef}
+              brickBackRef={brickBackRef}
+              brickLeftRef={brickLeftRef}
+              brickRightRef={brickRightRef} />
+            <Ball
+              ballRef={ballRef}
+              keeperRef={keeperRef}
+              postRef={postRef}
+              lineRef={lineRef}
+              wallRef={wallRef}
+              brickBackRef={brickBackRef}
+              brickLeftRef={brickLeftRef}
+              brickRightRef={brickRightRef}
+              onGoal={handleGoal}
+              points={points}
+              setPoints={setPoints}
+              isGoal={isGoal}
+              setIsGoal={setIsGoal}
+              difficulty={difficulty}
+              topcrossbarRef={topcrossbarRef}
+              leftcrossbarRef={leftcrossbarRef}
+              rightcrossbarRef={rightcrossbarRef}
+              showNotification={showNotification}
+              shotsRemaining={shotsRemaining}
+              setShotRemaining={setShotsRemaining}
+              handleShot={handleShot}
+              restartGame={restartGame}
+              setResetCamera={setResetCamera}
+              joystickInput={joystickInput}
+              setJoystickInput={setJoystickInput}
+            />
+            <Keeper
+              keeperRef={keeperRef}
+              difficulty={difficulty}
+              keeperDirection={keeperDirection}
+            />
 
 
 
 
-          <Pitch />
+            <Pitch />
 
-        </Suspense>
+          </Suspense>
 
-      </Canvas>
+        </Canvas>
       </SafeAreaProvider>
     </>
-    
+
   );
 }
 

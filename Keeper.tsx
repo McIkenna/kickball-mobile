@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useLoader, useFrame } from '@react-three/fiber/native'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { TextureLoader} from 'expo-three'
 import { Asset } from 'expo-asset';
 
-export const Keeper = ({ keeperRef, difficulty, keeperDirection }: { keeperRef?: any, difficulty?: any, keeperDirection?:any }) => {
+export const Keeper = ({ keeperRef, difficulty, keeperDirection }: { keeperRef?: any, difficulty?: any, keeperDirection?: any }) => {
 
-const [keeperModelUri, setKeeperModelUri] = useState<string | null>(null);
-    
+    const [keeperModelUri, setKeeperModelUri] = useState<string | null>(null);
+
     useEffect(() => {
         const loadAsset = async () => {
             try {
@@ -21,13 +22,51 @@ const [keeperModelUri, setKeeperModelUri] = useState<string | null>(null);
         };
         loadAsset();
     }, []);
+    const myImage = require('./public/textures/male_casualsuit01_diffuse.jpg');
+    const suitTexture = useLoader(TextureLoader, myImage)
+
+    const skinImage = require('./public/black-cloth.jpg');
+    const skinTexture = useLoader(TextureLoader, skinImage)
+
+    const shoeImage = require('./public/textures/shoes01_diffuse.jpg');
+    const shoeTexture = useLoader(TextureLoader, shoeImage)
+
+    const hairImage = require('./public/rosewood.jpg');
+    const hairTexture = useLoader(TextureLoader, hairImage)
 
     const gltf = keeperModelUri ? useLoader(GLTFLoader, keeperModelUri) : null;
 
-    
-    
+  
+
+   useEffect(() => {
+    if (!gltf) return;
+
+    gltf.scene.traverse((child: any) => {
+      if (child.isMesh) {
+        // Assign textures based on material name or mesh name
+        if (child.material.name.toLowerCase().includes('male_casualsuit01')) {
+          child.material.map = suitTexture;
+          child.material.needsUpdate = true;
+        } if (child.material.name.toLowerCase() === 'shoes01') {
+          child.material.map = shoeTexture;
+          child.material.needsUpdate = true;
+        }
+        if (child.material.name.toLowerCase() === 'young_caucasian_female2'){
+            child.material.map = skinTexture;
+            child.material.needsUpdate = true;
+        }
+        if (child.material.name.toLowerCase() === 'mhair01black'){
+            child.material.map = hairTexture;
+            child.material.needsUpdate = true;
+        }
+      }
+    });
+  }, [gltf, suitTexture, shoeTexture, skinTexture, hairTexture]);
+
+
+
     useFrame((state, delta) => {
-        
+
         if (!keeperRef?.current || !gltf) return;
         const keeper = keeperRef.current
 
@@ -59,7 +98,7 @@ const [keeperModelUri, setKeeperModelUri] = useState<string | null>(null);
             ref={keeperRef}
             object={gltf.scene}
             position={[-11, 0.2, 0.2]}
-            rotation={[Math.PI / 1.8, Math.PI/2, -Math.PI /1.8]}
+            rotation={[Math.PI / 1.8, Math.PI / 2, -Math.PI / 1.8]}
             scale={[0.13, 0.1, 0.13]} />)
 
 }

@@ -51,7 +51,7 @@ export const GoalPost = (
     if (!gltf) return null;
 
 
-    const crossbarImage = require('./public/post_texture.png');
+    const crossbarImage = require('./public/rosewood.jpg');
     const crossbarTexture = useLoader(TextureLoader, crossbarImage)
     crossbarTexture.wrapS = RepeatWrapping
     crossbarTexture.wrapT = RepeatWrapping
@@ -62,14 +62,14 @@ export const GoalPost = (
             {/* Right post */}
             <group>
                 <mesh position={[1.85, 0.2, 3.9]} scale={[2, 1, 1.5]}
-                ref={leftcrossbarRef}
+                    ref={leftcrossbarRef}
                 >
                     <cylinderGeometry args={[0.1, 0.1, 3.9]} />
                     <meshStandardMaterial
                         map={crossbarTexture} />
                 </mesh>
                 <mesh position={[2.5, 0.2, -3.5]} scale={[2, 1, 1.5]}
-                ref={rightcrossbarRef}
+                    ref={rightcrossbarRef}
                 >
                     <cylinderGeometry args={[0.1, 0.1, 3.9]} />
                     <meshStandardMaterial
@@ -77,7 +77,7 @@ export const GoalPost = (
                 </mesh>
                 {/* topbar */}
                 <mesh position={[1.95, 2, 0.15]} rotation={[Math.PI / 2, 0, 0.1]} scale={[2, 1, 1.5]}
-                ref={topcrossbarRef}
+                    ref={topcrossbarRef}
                 >
                     <cylinderGeometry args={[0.1, 0.1, 7.45]} />
                     <meshStandardMaterial
@@ -91,7 +91,7 @@ export const GoalPost = (
                 scale={[2, 2, 2]} />
 
             <mesh position={[1.5, -0.2, 0.1]} rotation={[0, Math.PI / 2, 0]}
-            ref={lineRef}
+                ref={lineRef}
             >
                 <planeGeometry args={[7.2, 4]} />
                 <meshStandardMaterial
@@ -101,7 +101,7 @@ export const GoalPost = (
             </mesh>
 
             <mesh position={[1.5, 4, 0.1]} rotation={[0, Math.PI / 2, 0]}
-            ref={wallRef}
+                ref={wallRef}
             >
                 <planeGeometry args={[8, 3.5]} />
                 <meshStandardMaterial
@@ -111,7 +111,7 @@ export const GoalPost = (
             </mesh>
 
             <mesh position={[1.5, -0.2, 7.5]} rotation={[0, Math.PI / 2, 0]}
-            ref={wallRef}
+                ref={wallRef}
             >
                 <planeGeometry args={[7.2, 12]} />
                 <meshStandardMaterial
@@ -120,7 +120,7 @@ export const GoalPost = (
                 />
             </mesh>
             <mesh position={[1.5, -0.2, -7.5]} rotation={[0, Math.PI / 2, 0]}
-            ref={wallRef}
+                ref={wallRef}
             >
                 <planeGeometry args={[7.2, 12]} />
                 <meshStandardMaterial
@@ -131,7 +131,7 @@ export const GoalPost = (
 
 
             <mesh position={[20, -0.2, 0.1]} rotation={[0, Math.PI / 2, 0]}
-            ref={brickBackRef}
+                ref={brickBackRef}
             >
                 <boxGeometry args={[40, 12]} />
                 <meshStandardMaterial
@@ -141,7 +141,7 @@ export const GoalPost = (
             </mesh>
 
             <mesh position={[8, -0.2, 7.5]} rotation={[0, Math.PI, 0]}
-            ref={brickLeftRef}
+                ref={brickLeftRef}
             >
                 <boxGeometry args={[60, 12]} />
                 <meshStandardMaterial
@@ -151,7 +151,7 @@ export const GoalPost = (
             </mesh>
 
             <mesh position={[9, -6.5, -12]} rotation={[0, 0, Math.PI / 2]} scale={[5, 1, 1]}
-            ref={brickRightRef}
+                ref={brickRightRef}
             >
                 <boxGeometry args={[5, 70]} />
                 <meshStandardMaterial

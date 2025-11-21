@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, StyleSheet, PanResponder, Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-export const Joystick = ({ onShoot }) => {
+export const Joystick = ({ 
+    onShoot
+ }) => {
     const insets = useSafeAreaInsets();
     const disabled = false
     const size = 150
@@ -94,7 +96,7 @@ export const Joystick = ({ onShoot }) => {
                     toValue: { x: 0, y: 0 },
                     useNativeDriver: true,
                     tension: 50,
-                    friction: 7
+                    friction: 5
                 }).start();
 
                 Animated.timing(powerBarWidth, {

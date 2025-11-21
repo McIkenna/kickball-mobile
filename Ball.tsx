@@ -88,9 +88,12 @@ export const Ball = ({
             mouseDownTime.current = Date.now()
 
         }
-        if (shotsRemaining === 0) {
-            showNotification('You Ran Out of Attempts', 'miss')
+        if (shotsRemaining === 0 && !isGoal ) {
+            // mesh.position.set(0, 0.5, 0)
+            velocity.current.set(0, 0, 0)
             restartGame()
+            showNotification('You Ran Out of Attempts', 'miss')
+            setResetCamera(true)
         }
     }
 
@@ -128,7 +131,7 @@ export const Ball = ({
         if (joystickInput && ballRef.current) {
             const { power, direction } = joystickInput;
 
-            const minSpeed = 15;
+        const minSpeed = 5;
         const maxSpeed = 50;
         const speed = minSpeed + (maxSpeed - minSpeed) * power;
 
@@ -151,6 +154,16 @@ export const Ball = ({
         setShotRemaining((s:any) => s - 1);
         setJoystickInput(null);
         }
+
+        setTimeout(() => {
+        if (shotsRemaining === 0 && !isGoal) {
+            velocity.current.set(0, 0, 0)
+            restartGame()
+            showNotification('You Ran Out of Attempts', 'miss')
+            setResetCamera(true)
+        }
+    }, 2000)
+
     }, [joystickInput]);
 
 
@@ -162,10 +175,12 @@ export const Ball = ({
             setShotRemaining(3)
             setResetCamera(true)
         }
+        
 
         setTimeout(() => {
             setIsGoal(false);
         }, 2000);
+       
     }, [isGoal])
 
     useFrame((state, delta) => {
